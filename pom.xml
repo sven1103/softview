@@ -43,6 +43,10 @@
                         <version>1.7.0</version>
                     </dependency>
                 </dependencies>
+                <configuration>
+                    <stubsOutputDirectory>${project.build.directory}/generated-sources/groovy-stubs</stubsOutputDirectory>
+                    <testStubsOutputDirectory>${project.build.directory}/generated-groovy-test-stubs</testStubsOutputDirectory>
+                </configuration>
                 <executions>
                     <execution>
                         <goals>
