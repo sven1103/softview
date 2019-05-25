@@ -1,0 +1,6 @@
+@startuml
+interface List
+class ListImpl
+
+List <|.. ListImpl
+@enduml

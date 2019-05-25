@@ -1,0 +1,6 @@
+@startuml
+package filli.example {
+  class Class01
+  Class01 <-- Class02
+}
+@enduml
