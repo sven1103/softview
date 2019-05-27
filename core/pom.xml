@@ -49,7 +49,7 @@
                     </dependency>
                 </dependencies>
                 <configuration>
-                    <stubsOutputDirectory>${project.build.directory}/generated-sources/groovy-stubs</stubsOutputDirectory>
+                    <stubsOutputDirectory>${project.build.directory}/generated-groovy-stubs</stubsOutputDirectory>
                     <testStubsOutputDirectory>${project.build.directory}/generated-groovy-test-stubs</testStubsOutputDirectory>
                 </configuration>
                 <executions>

@@ -13,7 +13,7 @@ class PumlClassSpec extends Specification{
         classB.addAssociationWith(classA)
 
         then:
-        assert classB.getUmlSyntax() == 'ClassA <-- ClassB'
+        assert classB.getUmlSyntax() == 'ClassA <-- ClassB\n'
         assert classA.getUmlSyntax() == ''
     }
 

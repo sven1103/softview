@@ -1,8 +1,8 @@
 package filli
 
-abstract class PumlObject {
+abstract class PumlObject implements Relatable{
 
-    private final String name
+    protected final String name
 
     PumlObject(String name) {
         this.name = name
