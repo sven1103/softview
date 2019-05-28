@@ -2,6 +2,10 @@ package filli
 
 interface Relatable {
 
-    void addAssociationWith(PumlObject object)
+    void uses(PumlObject pumlObject)
+
+    void realizes(PumlInterface pumlInterface)
+
+    void specializes(PumlClass pumlClass)
 
 }

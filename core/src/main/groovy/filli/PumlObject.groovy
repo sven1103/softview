@@ -1,12 +1,15 @@
 package filli
 
-abstract class PumlObject implements Relatable{
+abstract class PumlObject {
 
-    protected final String name
+    protected String type
+
+    protected String name
 
     PumlObject(String name) {
         this.name = name
+        this.type = ""
     }
-
+    
     abstract String getUmlSyntax()
 }

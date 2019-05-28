@@ -10,11 +10,25 @@ class PumlClassSpec extends Specification{
         PumlClass classB = new PumlClass("ClassB")
 
         when:
-        classB.addAssociationWith(classA)
+        classB.uses(classA)
 
         then:
         assert classB.getUmlSyntax() == 'ClassA <-- ClassB\n'
         assert classA.getUmlSyntax() == ''
+    }
+
+    def "a simple class implements interface relation: InterfaceA <.. ClassB"() {
+        given:
+        PumlInterface interfaceA = new PumlInterface("InterfaceA")
+        PumlClass classB = new PumlClass("ClassB")
+
+        when:
+        classB.realizes(interfaceA)
+
+        then:
+        assert classB.getUmlSyntax() == 'InterfaceA <.. ClassB\n'
+        assert interfaceA.getUmlSyntax() == ''
+
     }
 
 }
