@@ -6,6 +6,6 @@ interface Relatable {
 
     void realizes(PumlInterface pumlInterface)
 
-    void specializes(PumlClass pumlClass)
+    void specializes(PumlAbstractClass abstractClass)
 
 }
