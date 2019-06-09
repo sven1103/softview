@@ -1,4 +1,0 @@
-package filli
-
-class UmlFileParser {
-}
