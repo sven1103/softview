@@ -1,5 +1,8 @@
-package filli
+package filli.softview.types
 
+import filli.softview.types.PumlAbstractClass
+import filli.softview.types.PumlClass
+import filli.softview.types.PumlInterface
 import spock.lang.Specification
 
 class PumlClassSpec extends Specification{
