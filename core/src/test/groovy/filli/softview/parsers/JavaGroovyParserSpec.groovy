@@ -13,13 +13,15 @@ class JavaGroovyParserSpec extends Specification{
     def 'parse test class and return PumlClass object with 1 association, 1 specialisation and 1 realisation'() {
         given:
         SourceCodeParser parser = new JavaGroovyParser()
-        parser.parseFile(testClass)
 
         when:
-        PumlObject object = parser.getPumlObjectRepresentation()
+        PumlObject object =  parser.parseFileContent(testClass.text)
 
         then:
         assert object.class == PumlClass.class
+        assert object.associations.size() == 1
+        assert object.specialization
+        assert object.realizations.size() == 2
 
     }
 

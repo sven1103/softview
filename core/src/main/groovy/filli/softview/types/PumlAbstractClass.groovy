@@ -2,11 +2,11 @@ package filli.softview.types
 
 class PumlAbstractClass extends PumlObject implements Relatable{
 
-    private final List<PumlObject> associations = []
+    protected final List<PumlObject> associations = []
 
-    private final List<PumlInterface> realizations = []
+    protected final List<PumlInterface> realizations = []
 
-    private PumlAbstractClass specialization
+    protected PumlAbstractClass specialization
 
     PumlAbstractClass(String name) {
         super(name)
@@ -44,13 +44,35 @@ class PumlAbstractClass extends PumlObject implements Relatable{
 
     void uses(PumlObject pumlObject) {
         this.associations << pumlObject
+        removeRedundancies()
+    }
+
+    void uses(List<PumlObject> pumlObjectList) {
+        pumlObjectList.each { this.uses it }
+        removeRedundancies()
     }
 
     void realizes(PumlInterface pumlInterface) {
         this.realizations << pumlInterface
+        removeRedundancies()
+    }
+
+    void realizes(List<PumlInterface> pumlInterfaceList) {
+        pumlInterfaceList.each { this.realizes it }
+        removeRedundancies()
     }
 
     void specializes(PumlAbstractClass pumlAbstractClass) {
         this.specialization = pumlAbstractClass
+        removeRedundancies()
+    }
+
+    private void removeRedundancies(){
+        this.associations.removeAll { PumlObject pumlObject ->
+            this.specialization.any { pumlObject.name =~ it.name }
+        }
+        this.associations.removeAll { PumlObject pumlObject ->
+            this.realizations.any { pumlObject.name =~ it.name }
+        }
     }
 }
