@@ -1,11 +1,11 @@
-package filli.softview.parsers
+package filli.softview.reader
 
 import filli.softview.types.PumlAbstractClass
 import filli.softview.types.PumlClass
 import filli.softview.types.PumlInterface
 import filli.softview.types.PumlObject
 
-class JavaGroovyParser extends SourceCodeParser{
+class JavaGroovyReader extends SourceCodeReader{
 
     private String fileContent
 
@@ -98,7 +98,7 @@ class JavaGroovyParser extends SourceCodeParser{
                 new PumlInterface()
                 break
             default:
-                throw new SourceCodeParserException("Could not find any of the keywords ('abstract', 'class' or 'interface')" +
+                throw new SourceCodeReaderException("Could not find any of the keywords ('abstract', 'class' or 'interface')" +
                         "in the class definition line.")
         }
     }
@@ -107,9 +107,9 @@ class JavaGroovyParser extends SourceCodeParser{
         final def classDefinitionRegex = /(class.*)|(interface.*)|(abstract.*)/
         def findDefinitions = (fileContent =~ classDefinitionRegex)
         if (!findDefinitions) {
-            throw new SourceCodeParserException("Could not find a class definition line. Please check the file content!")
+            throw new SourceCodeReaderException("Could not find a class definition line. Please check the file content!")
         } else if (findDefinitions.size() > 1) {
-            throw new SourceCodeParserException("Found more than one class definition line. Please check the file content!")
+            throw new SourceCodeReaderException("Found more than one class definition line. Please check the file content!")
         }
         return findDefinitions[0]
     }

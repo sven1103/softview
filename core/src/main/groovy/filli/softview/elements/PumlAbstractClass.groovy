@@ -1,6 +1,6 @@
-package filli.softview.types
+package filli.softview.elements
 
-class PumlAbstractClass extends PumlObject implements Relatable{
+class PumlAbstractClass extends PumlObject implements Relatable {
 
     protected final List<PumlObject> associations = []
 

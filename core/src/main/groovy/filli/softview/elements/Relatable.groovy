@@ -1,4 +1,4 @@
-package filli.softview.types
+package filli.softview.elements
 
 interface Relatable {
 

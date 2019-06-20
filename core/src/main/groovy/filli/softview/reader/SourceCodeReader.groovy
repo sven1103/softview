@@ -1,8 +1,8 @@
-package filli.softview.parsers
+package filli.softview.reader
 
 import filli.softview.types.PumlObject
 
-abstract class SourceCodeParser {
+abstract class SourceCodeReader {
 
     abstract PumlObject parseFileContent(String fileContent)
 
