@@ -3,7 +3,7 @@ package filli.softview.converter
 import filli.softview.elements.PumlClass
 import filli.softview.elements.PumlInterface
 import filli.softview.elements.PumlObject
-import filli.softview.io.ConverterOutput
+import filli.softview.output.ConverterOutput
 import spock.lang.Shared
 import spock.lang.Specification
 
