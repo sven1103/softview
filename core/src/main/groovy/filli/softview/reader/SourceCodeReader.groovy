@@ -1,6 +1,6 @@
 package filli.softview.reader
 
-import filli.softview.types.PumlObject
+import filli.softview.elements.PumlObject
 
 abstract class SourceCodeReader {
 

@@ -1,7 +1,7 @@
 package filli.softview.reader
 
-import filli.softview.types.PumlClass
-import filli.softview.types.PumlObject
+import filli.softview.elements.PumlClass
+import filli.softview.elements.PumlObject
 import spock.lang.Shared
 import spock.lang.Specification
 

@@ -1,9 +1,9 @@
 package filli.softview.reader
 
-import filli.softview.types.PumlAbstractClass
-import filli.softview.types.PumlClass
-import filli.softview.types.PumlInterface
-import filli.softview.types.PumlObject
+import filli.softview.elements.PumlAbstractClass
+import filli.softview.elements.PumlClass
+import filli.softview.elements.PumlInterface
+import filli.softview.elements.PumlObject
 
 class JavaGroovyReader extends SourceCodeReader{
 

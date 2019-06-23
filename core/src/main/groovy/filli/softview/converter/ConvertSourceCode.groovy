@@ -1,9 +1,9 @@
 package filli.softview.converter
 
-import java.nio.file.Path
+import filli.softview.elements.PumlObject
 
 interface ConvertSourceCode {
 
-    parseSourceCodeFilesFromDir(Path path)
+    def passPumlObjects(List<PumlObject> pumlObjectList)
 
 }

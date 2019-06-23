@@ -2,6 +2,6 @@ package filli.softview.io
 
 interface ConverterOutput {
 
-    savePumlSyntaxAndGraph(String syntax)
+    def savePumlSyntaxAndGraph(String syntax)
 
 }
