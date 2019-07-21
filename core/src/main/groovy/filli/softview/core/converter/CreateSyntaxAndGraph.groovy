@@ -1,7 +1,7 @@
 package filli.softview.core.converter
 
-import filli.softview.core.elements.PumlObject
-import filli.softview.core.output.ConverterOutput
+import filli.softview.core.pumlelements.PumlObject
+import filli.softview.core.pumloutput.ConverterOutput
 
 class CreateSyntaxAndGraph implements ConvertSourceCode {
 

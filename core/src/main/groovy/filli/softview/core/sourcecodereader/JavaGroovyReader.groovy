@@ -1,4 +1,4 @@
-package filli.softview.core.reader
+package filli.softview.core.sourcecodereader
 
 import filli.softview.core.elements.PumlAbstractClass
 import filli.softview.core.elements.PumlClass

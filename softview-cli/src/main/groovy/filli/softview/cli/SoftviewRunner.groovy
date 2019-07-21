@@ -1,9 +1,9 @@
 package filli.softview.cli
 
 import filli.softview.core.converter.CreateSyntaxAndGraph
-import filli.softview.core.elements.PumlObject
-import filli.softview.core.output.ConverterOutput
-import filli.softview.core.output.FileOutput
+import filli.softview.core.pumlelements.PumlObject
+import filli.softview.core.pumloutput.ConverterOutput
+import filli.softview.core.pumloutput.FileOutput
 import groovyjarjarpicocli.CommandLine
 
 import java.nio.file.Path
@@ -17,7 +17,7 @@ class SoftviewRunner implements Callable<Void> {
     @CommandLine.Parameters(index = "0", description = "A directory path with the source code to analyse.")
     private Path dir
 
-    @CommandLine.Option(names = ["-o", "--output"], description = "An output path where softview creates the figure.")
+    @CommandLine.Option(names = ["-o", "--pumloutput"], description = "An pumloutput path where softview creates the figure.")
     private Path outputDir = Paths.get(System.getProperty("user.dir"))
 
     @Override
@@ -26,7 +26,7 @@ class SoftviewRunner implements Callable<Void> {
         List<PumlObject> pumlObjectList = PumlParser.parseFromDirectory(dir)
         println("done")
 
-        print "Creating output..."
+        print "Creating pumloutput..."
         ConverterOutput converterOutput = new FileOutput(outputDir)
         println("done")
 

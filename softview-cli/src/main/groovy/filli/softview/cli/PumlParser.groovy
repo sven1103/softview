@@ -1,8 +1,8 @@
 package filli.softview.cli
 
-import filli.softview.core.elements.PumlObject
-import filli.softview.core.reader.JavaGroovyReader
-import filli.softview.core.reader.SourceCodeReader
+import filli.softview.core.pumlelements.PumlObject
+import filli.softview.core.sourcecodereader.JavaGroovyReader
+import filli.softview.core.sourcecodereader.SourceCodeReader
 import groovy.io.FileType
 
 import java.nio.file.Path

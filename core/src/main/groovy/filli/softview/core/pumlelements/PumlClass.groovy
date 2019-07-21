@@ -1,4 +1,4 @@
-package filli.softview.core.elements
+package filli.softview.core.pumlelements
 
 import groovy.transform.CompileStatic
 

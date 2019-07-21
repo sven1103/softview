@@ -8,7 +8,7 @@ import spock.lang.Specification
 class CreateSyntaxAndGraphSpec extends Specification {
 
     @Shared
-    private List<filli.softview.core.elements.PumlObject> pumlObjectsList = createTestPumlObjects()
+    private List<filli.softview.core.pumlelements.PumlObject> pumlObjectsList = createTestPumlObjects()
 
 
     def 'pass pumlobjects source code representations'() {
@@ -21,8 +21,8 @@ class CreateSyntaxAndGraphSpec extends Specification {
 
         then:
         assert convertCodeToPumlElements.pumlObjectList.size() == 2
-        assert convertCodeToPumlElements.pumlObjectList.find { it.class == filli.softview.core.elements.PumlClass }
-        assert convertCodeToPumlElements.pumlObjectList.find { it.class == filli.softview.core.elements.PumlInterface }
+        assert convertCodeToPumlElements.pumlObjectList.find { it.class == filli.softview.core.pumlelements.PumlClass }
+        assert convertCodeToPumlElements.pumlObjectList.find { it.class == filli.softview.core.pumlelements.PumlInterface }
     }
 
 
@@ -30,7 +30,7 @@ class CreateSyntaxAndGraphSpec extends Specification {
 
         given:
         def convertCodeToPumlElements = new CreateSyntaxAndGraph()
-        filli.softview.core.output.ConverterOutput simpleOutput = Mock()
+        filli.softview.core.pumloutput.ConverterOutput simpleOutput = Mock()
 
         when:
         convertCodeToPumlElements.passPumlObjects(pumlObjectsList)
@@ -41,9 +41,9 @@ class CreateSyntaxAndGraphSpec extends Specification {
     }
 
 
-    private static List<filli.softview.core.elements.PumlObject> createTestPumlObjects() {
-        def pumlClass = new filli.softview.core.elements.PumlClass()
-        def pumlInterface = new filli.softview.core.elements.PumlInterface()
+    private static List<filli.softview.core.pumlelements.PumlObject> createTestPumlObjects() {
+        def pumlClass = new filli.softview.core.pumlelements.PumlClass()
+        def pumlInterface = new filli.softview.core.pumlelements.PumlInterface()
         return [pumlClass, pumlInterface]
     }
 

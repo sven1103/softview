@@ -1,4 +1,4 @@
-package filli.softview.core.elements
+package filli.softview.core.pumlelements
 
 class PumlAbstractClass extends PumlObject implements Relatable {
 
