@@ -1,4 +1,4 @@
-package filli.softview.reader
+package filli.softview.core.reader
 
 class SourceCodeReaderException extends RuntimeException {
 

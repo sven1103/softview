@@ -1,11 +1,13 @@
-package filli.softview.reader
+package filli.softview.core.reader
 
-import filli.softview.elements.PumlAbstractClass
-import filli.softview.elements.PumlClass
-import filli.softview.elements.PumlInterface
-import filli.softview.elements.PumlObject
+import filli.softview.core.elements.PumlAbstractClass
+import filli.softview.core.elements.PumlClass
+import filli.softview.core.elements.PumlInterface
+import filli.softview.core.elements.PumlObject
 
-class JavaGroovyReader extends SourceCodeReader{
+import java.util.regex.Matcher
+
+class JavaGroovyReader extends SourceCodeReader {
 
     private String fileContent
 
@@ -23,11 +25,20 @@ class JavaGroovyReader extends SourceCodeReader{
             case PumlAbstractClass.class:
                 describeAbstractClassDependencies()
                 break
+            case PumlInterface.class:
+                describeInterfaceDependencies()
+                break
         }
     }
 
-    private PumlObject describeAbstractClassDependencies() {
+    private PumlObject describeInterfaceDependencies() {
+        PumlInterface interfaceClass = new PumlInterface()
+        return interfaceClass
+    }
 
+    private PumlObject describeAbstractClassDependencies() {
+        PumlAbstractClass abstractClass = new PumlAbstractClass()
+        return abstractClass
     }
 
     private PumlObject describeClassDependencies() {
@@ -39,7 +50,7 @@ class JavaGroovyReader extends SourceCodeReader{
     }
 
     private PumlAbstractClass getAbstractClassSpecialisation() {
-        def findSpecialisations = ( fileContent =~ $/class.*extends.[^\{]\w*/$ )
+        def findSpecialisations = (fileContent =~ $/class.*extends.[^\{]\w*/$)
         List<PumlAbstractClass> specialisations = []
         findSpecialisations.each { line ->
             def heritedClassName = line.split()[-1]
@@ -52,14 +63,14 @@ class JavaGroovyReader extends SourceCodeReader{
     }
 
     private List<PumlInterface> getInterfaceImplementations() {
-        def findSpecialisations = ( fileContent =~ $/class.*implements.(\w+)(,\s*\w+)*/$ )
+        def findSpecialisations = (fileContent =~ $/class.*implements.(\w+)(,\s*\w+)*/$)
         def implementationPhrase = $/implements.*/$
-        List <PumlInterface> pumlInterfaceList = []
+        List<PumlInterface> pumlInterfaceList = []
         findSpecialisations.each { matches ->
-            def implementations = ( matches[0] =~ implementationPhrase )
+            def implementations = (matches[0] =~ implementationPhrase)
             implementations.each { String implMatches ->
                 def interfaceNames = implMatches.replaceAll("implements", "")
-                                                .replaceAll(/\s/, "").split(",")
+                        .replaceAll(/\s/, "").split(",")
                 interfaceNames.each {
                     def pumlInterface = new PumlInterface()
                     pumlInterface.name = it
@@ -72,11 +83,11 @@ class JavaGroovyReader extends SourceCodeReader{
     }
 
     private List<PumlObject> getClassUsages() {
-        def findImportStatements = ( fileContent =~ $/import.*/$)
+        Matcher findImportStatements = (fileContent =~ $/import\s.*/$)
         def usedClasses = []
         findImportStatements.each { importLine ->
             def listWithClassImport = importLine.split()
-            if (listWithClassImport[1]) {
+            if (listWithClassImport.getAt(1)) {
                 def otherPumlClass = new PumlClass()
                 otherPumlClass.name = listWithClassImport[1]
                 usedClasses << otherPumlClass
@@ -105,12 +116,10 @@ class JavaGroovyReader extends SourceCodeReader{
 
     private String findClassDefinitionLine() {
         final def classDefinitionRegex = /(class.*)|(interface.*)|(abstract.*)/
-        def findDefinitions = (fileContent =~ classDefinitionRegex)
+        Matcher findDefinitions = (fileContent =~ classDefinitionRegex)
         if (!findDefinitions) {
             throw new SourceCodeReaderException("Could not find a class definition line. Please check the file content!")
-        } else if (findDefinitions.size() > 1) {
-            throw new SourceCodeReaderException("Found more than one class definition line. Please check the file content!")
         }
-        return findDefinitions[0]
+        return findDefinitions[0][0]
     }
 }

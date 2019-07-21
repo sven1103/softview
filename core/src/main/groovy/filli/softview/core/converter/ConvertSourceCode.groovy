@@ -1,6 +1,6 @@
-package filli.softview.converter
+package filli.softview.core.converter
 
-import filli.softview.elements.PumlObject
+import filli.softview.core.elements.PumlObject
 
 interface ConvertSourceCode {
 

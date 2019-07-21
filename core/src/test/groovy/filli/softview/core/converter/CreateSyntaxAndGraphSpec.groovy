@@ -1,9 +1,6 @@
-package filli.softview.converter
+package filli.softview.core.converter
 
-import filli.softview.elements.PumlClass
-import filli.softview.elements.PumlInterface
-import filli.softview.elements.PumlObject
-import filli.softview.output.ConverterOutput
+
 import spock.lang.Shared
 import spock.lang.Specification
 
@@ -11,7 +8,7 @@ import spock.lang.Specification
 class CreateSyntaxAndGraphSpec extends Specification {
 
     @Shared
-    private List<PumlObject> pumlObjectsList = createTestPumlObjects()
+    private List<filli.softview.core.elements.PumlObject> pumlObjectsList = createTestPumlObjects()
 
 
     def 'pass pumlobjects source code representations'() {
@@ -24,8 +21,8 @@ class CreateSyntaxAndGraphSpec extends Specification {
 
         then:
         assert convertCodeToPumlElements.pumlObjectList.size() == 2
-        assert convertCodeToPumlElements.pumlObjectList.find { it.class == PumlClass }
-        assert convertCodeToPumlElements.pumlObjectList.find { it.class == PumlInterface }
+        assert convertCodeToPumlElements.pumlObjectList.find { it.class == filli.softview.core.elements.PumlClass }
+        assert convertCodeToPumlElements.pumlObjectList.find { it.class == filli.softview.core.elements.PumlInterface }
     }
 
 
@@ -33,7 +30,7 @@ class CreateSyntaxAndGraphSpec extends Specification {
 
         given:
         def convertCodeToPumlElements = new CreateSyntaxAndGraph()
-        ConverterOutput simpleOutput = Mock()
+        filli.softview.core.output.ConverterOutput simpleOutput = Mock()
 
         when:
         convertCodeToPumlElements.passPumlObjects(pumlObjectsList)
@@ -44,9 +41,9 @@ class CreateSyntaxAndGraphSpec extends Specification {
     }
 
 
-    private static List<PumlObject> createTestPumlObjects() {
-        def pumlClass = new PumlClass()
-        def pumlInterface = new PumlInterface()
+    private static List<filli.softview.core.elements.PumlObject> createTestPumlObjects() {
+        def pumlClass = new filli.softview.core.elements.PumlClass()
+        def pumlInterface = new filli.softview.core.elements.PumlInterface()
         return [pumlClass, pumlInterface]
     }
 

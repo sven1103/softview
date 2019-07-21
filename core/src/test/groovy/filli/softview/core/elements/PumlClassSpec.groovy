@@ -1,4 +1,4 @@
-package filli.softview.elements
+package filli.softview.core.elements
 
 
 import spock.lang.Specification

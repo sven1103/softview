@@ -1,4 +1,4 @@
-package filli.softview.output
+package filli.softview.core.output
 
 interface ConverterOutput {
 
