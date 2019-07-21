@@ -15,9 +15,13 @@ class PumlParser {
         fileList.each { file ->
             SourceCodeReader reader = getReaderForFileType(file)
             println "Parsing file $file"
-            pumlObjectList << reader.parseFileContent(file.text)
+            pumlObjectList << reader.parseFileContent(file.text, getFileNameWithoutExtension(file))
         }
         return pumlObjectList
+    }
+
+    private static String getFileNameWithoutExtension(Path file) {
+        file.fileName.toString().take(file.fileName.toString().lastIndexOf("."))
     }
 
     private static List<Path> collectAllFilesFromDir(Path dir) {

@@ -1,7 +1,7 @@
 package filli.softview.core.sourcecodereader
 
-import filli.softview.core.elements.PumlClass
-import filli.softview.core.elements.PumlObject
+import filli.softview.core.pumlelements.PumlClass
+import filli.softview.core.pumlelements.PumlObject
 import spock.lang.Shared
 import spock.lang.Specification
 
@@ -22,7 +22,7 @@ class JavaGroovyReaderSpec extends Specification{
         SourceCodeReader parser = new JavaGroovyReader()
 
         when:
-        PumlObject object =  parser.parseFileContent(testClass)
+        PumlObject object =  parser.parseFileContent(testClass, "dummy")
 
         then:
         assert object.class == PumlClass.class

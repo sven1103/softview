@@ -1,9 +1,9 @@
 package filli.softview.core.sourcecodereader
 
-import filli.softview.core.elements.PumlAbstractClass
-import filli.softview.core.elements.PumlClass
-import filli.softview.core.elements.PumlInterface
-import filli.softview.core.elements.PumlObject
+import filli.softview.core.pumlelements.PumlAbstractClass
+import filli.softview.core.pumlelements.PumlClass
+import filli.softview.core.pumlelements.PumlInterface
+import filli.softview.core.pumlelements.PumlObject
 
 import java.util.regex.Matcher
 
@@ -11,9 +11,26 @@ class JavaGroovyReader extends SourceCodeReader {
 
     private String fileContent
 
-    PumlObject parseFileContent(String fileContent) {
+    private String fileName
+
+    private String classPath
+
+    PumlObject parseFileContent(String fileContent, String fileName) {
         this.fileContent = fileContent
+        this.fileName = fileName
+        this.classPath = determineClassPath(fileContent)
         buildPumlObjectFromFile()
+    }
+
+    private static String determineClassPath(fileContent) {
+        def packageDefinitions = (fileContent =~ $/^package\s+[\w.]*/$)
+        def packages = []
+
+        packageDefinitions.each { line ->
+            packages << line.split()[-1]
+        }
+
+        return packages[0]
     }
 
     private PumlObject buildPumlObjectFromFile() {
@@ -32,17 +49,17 @@ class JavaGroovyReader extends SourceCodeReader {
     }
 
     private PumlObject describeInterfaceDependencies() {
-        PumlInterface interfaceClass = new PumlInterface()
+        PumlInterface interfaceClass = new PumlInterface("$classPath.$fileName")
         return interfaceClass
     }
 
     private PumlObject describeAbstractClassDependencies() {
-        PumlAbstractClass abstractClass = new PumlAbstractClass()
+        PumlAbstractClass abstractClass = new PumlAbstractClass("$classPath.$fileName")
         return abstractClass
     }
 
     private PumlObject describeClassDependencies() {
-        PumlClass pumlClass = new PumlClass()
+        PumlClass pumlClass = new PumlClass("$classPath.$fileName")
         pumlClass.uses(getClassUsages())
         pumlClass.specializes(getAbstractClassSpecialisation())
         pumlClass.realizes(getInterfaceImplementations())
